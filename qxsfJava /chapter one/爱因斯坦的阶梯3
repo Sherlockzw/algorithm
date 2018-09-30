@@ -1,0 +1,14 @@
+//爱因斯坦的阶梯
+
+public class JT3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int t = 30;
+		int n = t-1;
+		while(n%7!=0)
+			n+=t;
+		System.out.println(n);
+	}
+
+}
