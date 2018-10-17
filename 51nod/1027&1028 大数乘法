@@ -1,0 +1,15 @@
+import java.util.*;
+import java.math.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
+		BigInteger A = in.nextBigInteger();
+		BigInteger B = in.nextBigInteger();
+		BigInteger c = A.multiply(B);
+		System.out.println(c);
+	}
+
+}
