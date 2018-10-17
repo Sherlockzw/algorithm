@@ -1,0 +1,12 @@
+import java.util.*; 
+import java.math.*;
+
+public class test1005 {  
+    public static void main(String[] args) {  
+       Scanner a=new Scanner(System.in);
+       BigInteger A,B;
+		A=a.nextBigInteger();
+		B=a.nextBigInteger();
+		System.out.println(A.add(B));
+    }  
+} 
