@@ -1,0 +1,106 @@
+package character9.unit3;
+
+import java.util.Arrays;
+
+/**
+ * 用顺序存储（数组）方式来实现列表
+ * @author 郑vivian
+ *
+ */
+
+
+public class MyArrayList implements MyList {
+	private Object[] elements;  //真正存储元素的底层结构
+	
+	private int size = 0;  //元素个数
+	
+	private int capacity = 10;  //容量
+
+	public MyArrayList(int capacity) {
+		super();
+		this.capacity = capacity;
+		elements = new Object[capacity];
+	}
+	
+	public MyArrayList() {
+		super();
+		elements = new Object[capacity];
+	}
+
+	@Override
+	public void add(Object element) {
+		// TODO Auto-generated method stub
+		if(size == capacity) {  //扩容(想到了微博段子手阿忠伯233333，扩容是真滴贵啊)
+			capacity *= 2;  //增加一倍的量
+			Object[] newArr = new Object[capacity];
+			for(int i = 0; i<size; i++) {
+				newArr[i] = elements[i];
+				elements = newArr;  //扔掉旧数组
+			}
+		}
+		elements[size++] = element;
+	}
+
+	@Override
+	public void delete(Object element) {
+		// TODO Auto-generated method stub
+		int index = indexOf(element);
+		if(index >= 0) {
+			delete(index);  //才发现这里调用了一次delete(int index)
+		}
+		/*
+		for(int i = index; i < size; i++) {  //相当于调用了两次delete(int index)所以出问题
+			elements[i] = elements[i+1];
+		}
+		size--;
+		*/
+	}
+
+	@Override
+	public void delete(int index) {
+		// TODO Auto-generated method stub
+		for(int i = index-1; i < size; i++) {
+			elements[i] = elements[i+1];
+		}
+		size--;
+	}
+
+	@Override
+	public void update(int index, Object newElement) {
+		// TODO Auto-generated method stub
+		elements[index] = newElement;
+	}
+
+	@Override
+	public boolean contains(Object target) {
+		// TODO Auto-generated method stub
+		return indexOf(target) >=0 ;
+	}
+
+	@Override
+	public Object elementAt(int index) {
+		// TODO Auto-generated method stub
+		return elements[index];
+	}
+
+	@Override
+	public int indexOf(Object element) {  //这里如果变量是对象的话，相同对象查找就会出问题emmm
+		// TODO Auto-generated method stub
+		for(int i = 0; i < size; i++) {
+			if(elements[i].equals(element)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("[");
+		for(int i = 0; i < size; i++) {
+			sb.append(elements[i]+(i==size-1?"":" , "));
+		}
+		sb.append("]");
+		return sb.toString();
+	}
+}
